@@ -1,0 +1,16 @@
+com\footballbanter\footballhub\entity\User$Role.class
+com\footballbanter\footballhub\entity\Season.class
+com\footballbanter\footballhub\entity\Player.class
+com\footballbanter\footballhub\controller\LoginBean.class
+com\footballbanter\footballhub\entity\Award.class
+com\footballbanter\footballhub\entity\Competition.class
+com\footballbanter\footballhub\controller\ForgotPasswordBean.class
+com\footballbanter\footballhub\entity\League.class
+com\footballbanter\footballhub\resources\JakartaEE10Resource.class
+com\footballbanter\footballhub\entity\EntityModel.class
+com\footballbanter\footballhub\entity\Manager$ManagerStatus.class
+com\footballbanter\footballhub\entity\Manager.class
+com\footballbanter\footballhub\entity\User.class
+com\footballbanter\footballhub\entity\Venue.class
+com\footballbanter\footballhub\JakartaRestConfiguration.class
+com\footballbanter\footballhub\entity\Team.class

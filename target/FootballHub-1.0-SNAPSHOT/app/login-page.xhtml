@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title><ui:insert name="title">Login Page</ui:insert></title>
+        <h:outputStylesheet name="css/login.css"/>
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    </h:head>
+
+    <h:body>
+        <div class="container">
+
+            <!-- Left Side: Sign Up Form -->
+            <div class="login-form">
+                <div class="form-header">
+                    <div class="logo">
+                        <h:graphicImage width="50" height="50" name="images/All_Football.png" />
+                        <h2 style="color: black;">Football Hub</h2>
+                    </div>
+                </div>
+
+                <h3>LOGIN</h3>
+                <h:form>
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <h:inputText id="email" value="#{registerBean.email}" required="true" styleClass="input" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <h:inputSecret id="password" value="#{registerBean.password}" required="true" styleClass="input" />
+                    </div>
+
+                    <div class="form-utility">
+                        <label class="remember">
+                            <input type="checkbox" name="remember" />
+                            Remember me
+                        </label>
+                        <h:link outcome="forgot-password.xhtml" styleClass="forgot-link">Forgot password?</h:link>
+                    </div>
+
+                    <p class="separator">
+                        <span>or</span>
+                    </p>
+
+                    <div class="login-option">
+                        <!-- Google button -->
+                        <div class="option">
+                            <h:link outcome="#" styleClass="option-link">
+                                <h:graphicImage name="images/google.png" alt="Google" />
+                                <span>Google</span>
+                            </h:link>
+                        </div>
+
+                        <!-- Apple button -->
+                        <div class="option">
+                            <h:link outcome="#" styleClass="option-link">
+                                <h:graphicImage name="images/apple.png" alt="Apple" />
+                                <span>Apple</span>
+                            </h:link>
+                        </div>
+                    </div>
+
+                    <h:commandButton value="Login" action="#{registerBean.login}" styleClass="btn" />
+
+                    <div class="signup-link">
+                        <p>Don't have an account? <h:link outcome="sign-up.xhtml">Sign Up</h:link></p>
+                    </div>
+                </h:form>
+            </div>
+
+            <!-- Right Side: Image -->
+            <div class="login-image">
+                <h:graphicImage name="images/fifa18-login.jpg" />
+            </div>
+        </div>
+
+    </h:body>
+
+
+</html>

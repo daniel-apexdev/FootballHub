@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+    <title><ui:insert name="title">Football Hub</ui:insert></title>
+    <h:outputStylesheet name="css/style.css"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</h:head>
+<h:body>
+    <!-- Topbar -->
+    <div class="topbar">
+        <div class="topbar-left">
+            <button class="menu-toggle" onclick="toggleSidebar()">
+                <span>☰</span>
+            </button>
+            <div class="logo">
+                <h:graphicImage width="50" height="50" name="images/All_Football.png" />
+                <span style="color: black;">Football Hub</span>
+            </div>
+        </div>
+        
+        <div class="topbar-right">
+            <!-- Notification Button -->
+            <button class="notification-btn" onclick="showNotifications()">
+                <span>🔔</span>
+                <span class="notification-badge">3</span>
+            </button>
+            
+            <!-- User Menu -->
+            <div class="user-menu" onclick="toggleUserDropdown()">
+                <div class="user-avatar">
+                    <ui:insert name="userInitials">DA</ui:insert>
+                </div>
+                <span class="dropdown-arrow">▼</span>
+                
+                <div class="user-dropdown" id="userDropdown">
+                    <h:link value="Profile"  styleClass="dropdown-item" />
+                    <h:link value="Settings" styleClass="dropdown-item" />
+                    <hr style="margin: 0; border: none; border-top: 1px solid #f0f0f0;"/>
+                    <h:link value="Logout" styleClass="dropdown-item" />
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Sidebar Overlay (for mobile) -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+    
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-nav">
+            <h:link value="Dashboard" outcome="/app/dashboard.xhtml" styleClass="nav-item" />
+            <h:link value="Leagues" outcome="/app/leagues.xhtml" styleClass="nav-item" />
+            <h:link value="Competitions" outcome="/app/competitions.xhtml" styleClass="nav-item" />
+            <h:link value="Teams" outcome="/app/teams.xhtml" styleClass="nav-item" />
+            <h:link value="Players" outcome="/app/players.xhtml" styleClass="nav-item" />
+            <h:link value="Managers" outcome="/app/managers.xhtml" styleClass="nav-item" />
+        </div>
+    </nav>
+    
+    <!-- Main Content Area -->
+    <main class="main-content" id="mainContent">
+        <ui:insert name="content">
+            <!-- Page content will be inserted here -->
+        </ui:insert>
+    </main>
+    
+   <!-- JavaScript for interactions -->
+    <script type="text/javascript">
+        //<![CDATA[
+        var sidebarVisible = true;
+        
+        function toggleSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var mainContent = document.getElementById('mainContent');
+            var overlay = document.getElementById('sidebarOverlay');
+            
+            if (window.innerWidth <= 768) {
+                // Mobile behavior
+                if (sidebar.classList.contains('show')) {
+                    sidebar.classList.remove('show');
+                    overlay.classList.remove('show');
+                } else {
+                    sidebar.classList.add('show');
+                    overlay.classList.add('show');
+                }
+            } else {
+                // Desktop behavior
+                sidebarVisible = !sidebarVisible;
+                if (sidebar.classList.contains('collapsed')) {
+                    sidebar.classList.remove('collapsed');
+                    mainContent.classList.remove('expanded');
+                } else {
+                    sidebar.classList.add('collapsed');
+                    mainContent.classList.add('expanded');
+                }
+            }
+        }
+        
+        function closeSidebar() {
+            var sidebar = document.getElementById('sidebar');
+            var overlay = document.getElementById('sidebarOverlay');
+            
+            sidebar.classList.remove('show');
+            overlay.classList.remove('show');
+        }
+        
+        function toggleUserDropdown() {
+            var dropdown = document.getElementById('userDropdown');
+            var userMenu = dropdown.parentElement;
+            
+            if (dropdown.classList.contains('show')) {
+                dropdown.classList.remove('show');
+                userMenu.classList.remove('active');
+            } else {
+                dropdown.classList.add('show');
+                userMenu.classList.add('active');
+            }
+        }
+        
+        function showNotifications() {
+            // Implement notification functionality
+            alert('Notifications clicked! Implement your notification system here.');
+        }
+        
+        // Initialize when page loads
+        window.onload = function() {
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(event) {
+                var userMenu = document.querySelector('.user-menu');
+                var dropdown = document.getElementById('userDropdown');
+                
+                if (userMenu && dropdown && !userMenu.contains(event.target)) {
+                    dropdown.classList.remove('show');
+                    userMenu.classList.remove('active');
+                }
+            });
+            
+            // Handle window resize
+            window.addEventListener('resize', function() {
+                if (window.innerWidth > 768) {
+                    closeSidebar();
+                }
+            });
+            
+            // Set active navigation item based on current page
+            var currentPath = window.location.pathname;
+            var navItems = document.querySelectorAll('.nav-item');
+            
+            for (var i = 0; i < navItems.length; i++) {
+                var item = navItems[i];
+                var href = item.getAttribute('href');
+                if (href && currentPath.indexOf(href) !== -1) {
+                    item.classList.add('active');
+                }
+            }
+        };
+        //]]>
+    </script>
+</h:body>
+</html>
