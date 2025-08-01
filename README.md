@@ -1,6 +1,6 @@
 # ⚽ Football Hub
 
-**Football Hub** is a dynamic web application built with **Oracle APEX** but is now being redesigned using Java, HTML&CSS, designed to centralize and visualize football data across generations. From match stats and player profiles to soundtrack integrations, Football Hub is an all-in-one platform for fans, analysts, and data enthusiasts.
+**Football Hub** is a dynamic web application built with **Oracle APEX** but is now being redesigned using **Java**, HTML&CSS, designed to centralize and visualize football data across generations. From match stats and player profiles to soundtrack integrations, Football Hub is an all-in-one platform for fans, analysts, and data enthusiasts.
 
 ---
 
